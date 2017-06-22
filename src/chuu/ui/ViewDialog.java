@@ -110,7 +110,8 @@ public class ViewDialog extends javax.swing.JDialog {
         String zip = ch.getZip().getName().replaceAll(" ", "_");
         
         try {
-            URL url = new URL(reCreate("file:///" + MainFrame.getDocumentsFolder() + File.separator + zip));
+            URL url = new File(MainFrame.getDocumentsFolder() + File.separator + zip).toURI().toURL();
+            
             outDir = Paths.get(url.toURI());
             try (FileInputStream fos = new FileInputStream(outDir.toFile()); ZipInputStream zis = new ZipInputStream(fos)) {
                 ZipEntry entry;
