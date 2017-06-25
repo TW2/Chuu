@@ -75,30 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println("Nimbus LookAndFeel not loaded : "+exc);
         }
         
-//        //-- dim >> Obtient la taille de l'écran
-//        //-- gconf >> Obtient la configuration de l'écran
-//        //-- insets >> Obtient les 'marges' de l'écran
-//        java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
-//        java.awt.Dimension dim = toolkit.getScreenSize();
-//        java.awt.GraphicsConfiguration gconf = java.awt.GraphicsEnvironment
-//                .getLocalGraphicsEnvironment().getDefaultScreenDevice()
-//                .getDefaultConfiguration();
-//        java.awt.Insets insets = toolkit.getScreenInsets(gconf);
-//        setSize(dim.width - insets.left - insets.right,
-//                dim.height - insets.top - insets.bottom);
-        
         setLocationRelativeTo(null);
-
-//        DefaultTreeModel dtreem = new DefaultTreeModel(root);
-//        jTree1.setModel(dtreem);
-//        jTree1.setDoubleBuffered(true);
-//        jTree1.setCellRenderer(new MangaChapterTreeRenderer());
-//        jTree1.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                treeMouseClicked(e);
-//            }
-//        });
         
         
         //On récupère le TXT et les XML et JPG depuis l'url
@@ -118,14 +95,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         
-//        for(int i=0; i<chapitres.size(); i++){
-//            MangaChapter mc = chapitres.get(i);
-//            File f = new File(getDocumentsFolder(), mc.getZip().getName());
-//            if(f.exists() == true){
-//                mangaListModel.addElement(mc);
-//            }
-//        }
-        
         jList1.setModel(mangaListModel);
         jList1.setCellRenderer(new MangaChapterListRenderer());        
         jList1.addMouseListener(new MouseAdapter() {
@@ -135,28 +104,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         populateList(level, null);
-        
-//        populateTree();
-//        expandAllTree(true);
     }
-    
-//    public void treeMouseClicked(MouseEvent e){
-//        if(e.getButton()==1 && e.getClickCount()==2){
-//            try{
-//                TreePath tp = jTree1.getSelectionPath();
-//                if(tp.getLastPathComponent() instanceof TreeEntry){
-//                    TreeEntry te = (TreeEntry)tp.getLastPathComponent();
-//                    MangaChapter mc = te.getMangaChapter();
-//                    ViewDialog vd = new ViewDialog(this, true);
-//                    vd.doEntries(mc);
-//                    vd.showDialog();
-//                }
-//            }catch(Exception exc){
-//                
-//            }            
-//        }        
-//    }
-    
+        
     public void listMouseClicked(MouseEvent e){
         ListEntry le = null;
         try{
@@ -219,187 +168,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
         return path;
     }
-    
-//    private void populateTree(){
-//        List<TreeEntry> treeEntries = new ArrayList<>();
-//        
-//        //Ajoute les teams
-//        for(int i=0; i<chapitres.size(); i++){
-//            MangaChapter mc = chapitres.get(i);
-//            TreeEntry entry = TreeEntry.createTeam(mc);
-//            
-//            boolean add = true;
-//            for(int j=0;j<treeEntries.size(); j++){
-//                TreeEntry teSEARCH = treeEntries.get(j);
-//                if(teSEARCH.getMangaChapter().getTeam().equalsIgnoreCase(entry.getMangaChapter().getTeam())){
-//                    add = false;
-//                    break;
-//                }
-//            }
-//            if(add == true){
-//                root.add(entry);
-//                treeEntries.add(entry);
-//            }            
-//        }
-//        
-//        //Ajoute les series
-//        for(int i=0; i<chapitres.size(); i++){
-//            MangaChapter mc = chapitres.get(i);
-//            TreeEntry entry = TreeEntry.createSerie(mc);
-//            
-//            boolean add = true;
-//            for(int j=0;j<treeEntries.size(); j++){
-//                TreeEntry teSEARCH = treeEntries.get(j);
-//                
-//                String team_1 = entry.getMangaChapter().getTeam();
-//                String team_2 = teSEARCH.getMangaChapter().getTeam();
-//                
-//                String serie_1 = entry.getMangaChapter().getNom();
-//                String serie_2 = teSEARCH.getMangaChapter().getNom();
-//                
-//                if(serie_1.equalsIgnoreCase(serie_2) 
-//                        & team_1.equalsIgnoreCase(team_2)
-//                        & teSEARCH.getEntryType().equals(entry.getEntryType())){
-//                    add = false;
-//                    break;
-//                }
-//            }
-//            if(add == true){
-//                for(int j=0;j<treeEntries.size(); j++){
-//                    TreeEntry teSEARCH = treeEntries.get(j);
-//                    
-//                    String team_1 = entry.getMangaChapter().getTeam();
-//                    String team_2 = teSEARCH.getMangaChapter().getTeam();
-//                    
-//                    if(team_2.equalsIgnoreCase(team_1)){
-//                        teSEARCH.add(entry);
-//                        treeEntries.add(entry);
-//                        break;
-//                    }                    
-//                }
-//            }            
-//        }
-//        
-//        //Ajoute les tomes
-//        for(int i=0; i<chapitres.size(); i++){
-//            MangaChapter mc = chapitres.get(i);
-//            TreeEntry entry = TreeEntry.createTome(mc);
-//            
-//            boolean add = true;
-//            for(int j=0;j<treeEntries.size(); j++){
-//                TreeEntry teSEARCH = treeEntries.get(j);
-//                
-//                String team_1 = entry.getMangaChapter().getTeam();
-//                String team_2 = teSEARCH.getMangaChapter().getTeam();
-//                
-//                String serie_1 = entry.getMangaChapter().getNom();
-//                String serie_2 = teSEARCH.getMangaChapter().getNom();
-//                
-//                String tome_1 = entry.getMangaChapter().getTome();
-//                String tome_2 = teSEARCH.getMangaChapter().getTome();
-//                
-//                if(serie_1.equalsIgnoreCase(serie_2) 
-//                        & team_1.equalsIgnoreCase(team_2)
-//                        & tome_1.equalsIgnoreCase(tome_2)
-//                        & teSEARCH.getEntryType().equals(entry.getEntryType())){
-//                    add = false;
-//                    break;
-//                }
-//            }
-//            if(add == true){
-//                for(int j=0;j<treeEntries.size(); j++){
-//                    TreeEntry teSEARCH = treeEntries.get(j);
-//                    
-//                    String team_1 = entry.getMangaChapter().getTeam();
-//                    String team_2 = teSEARCH.getMangaChapter().getTeam();
-//
-//                    String serie_1 = entry.getMangaChapter().getNom();
-//                    String serie_2 = teSEARCH.getMangaChapter().getNom();
-//                    
-//                    if(serie_1.equalsIgnoreCase(serie_2) & team_1.equalsIgnoreCase(team_2)){
-//                        if(teSEARCH.getUserObject().equals(serie_1)){
-//                            teSEARCH.add(entry);
-//                            treeEntries.add(entry);
-//                            break;
-//                        }                        
-//                    }                    
-//                }
-//            }            
-//        }
-//        
-//        //Ajoute les chapitres
-//        for(int i=0; i<chapitres.size(); i++){
-//            MangaChapter mc = chapitres.get(i);
-//            TreeEntry entry = TreeEntry.createChapitre(mc);
-//            
-//            boolean add = true;
-//            for(int j=0;j<treeEntries.size(); j++){
-//                TreeEntry teSEARCH = treeEntries.get(j);
-//                
-//                String team_1 = entry.getMangaChapter().getTeam();
-//                String team_2 = teSEARCH.getMangaChapter().getTeam();
-//                
-//                String serie_1 = entry.getMangaChapter().getNom();
-//                String serie_2 = teSEARCH.getMangaChapter().getNom();
-//                
-//                String tome_1 = entry.getMangaChapter().getTome();
-//                String tome_2 = teSEARCH.getMangaChapter().getTome();
-//                
-//                String ch_1 = entry.getMangaChapter().getNumero();
-//                String ch_2 = teSEARCH.getMangaChapter().getNumero();
-//                
-//                if(serie_1.equalsIgnoreCase(serie_2) 
-//                        & team_1.equalsIgnoreCase(team_2)
-//                        & tome_1.equalsIgnoreCase(tome_2)
-//                        & ch_1.equalsIgnoreCase(ch_2)
-//                        & teSEARCH.getEntryType().equals(entry.getEntryType())){
-//                    add = false;
-//                    break;
-//                }
-//            }
-//            if(add == true){
-//                for(int j=0;j<treeEntries.size(); j++){
-//                    TreeEntry teSEARCH = treeEntries.get(j);
-//                    
-//                    String team_1 = entry.getMangaChapter().getTeam();
-//                    String team_2 = teSEARCH.getMangaChapter().getTeam();
-//
-//                    String serie_1 = entry.getMangaChapter().getNom();
-//                    String serie_2 = teSEARCH.getMangaChapter().getNom();
-//                    
-//                    String tome_1 = entry.getMangaChapter().getTome();
-//                    String tome_2 = teSEARCH.getMangaChapter().getTome();
-//                    
-//                    if(serie_1.equalsIgnoreCase(serie_2) 
-//                            & team_1.equalsIgnoreCase(team_2) 
-//                            & tome_1.equalsIgnoreCase(tome_2)){
-//                        if(teSEARCH.getUserObject().equals(tome_1)){
-//                            teSEARCH.add(entry);
-//                            treeEntries.add(entry);
-//                            break;
-//                        }                        
-//                    }                    
-//                }
-//            }            
-//        }
-//    }
-    
-//    private void expandAllTree(boolean expandCollection){
-//
-//        for(int i=0;i<jTree1.getRowCount();i++){
-//            if(expandCollection==false){
-//                DefaultMutableTreeNode tni = (DefaultMutableTreeNode)jTree1
-//                        .getPathForRow(i).getLastPathComponent();
-//                if(tni.getUserObject() instanceof String){
-//                    if(tni.isRoot() || tni.isNodeChild(tni.getRoot())){
-//                        jTree1.expandRow(i);
-//                    }
-//                }
-//            }else{
-//                jTree1.expandRow(i);
-//            }
-//        }
-//    }
     
     private URI reCreate(URL url) throws URISyntaxException{
         String path = url.toString();
